@@ -10,7 +10,7 @@ const Barcodes: React.FC = () => {
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
   const [filteredBarcodes, setFilteredBarcodes] = useState<string[]>(barcodes);
   const handleAddBarcode = (newBarcode: string) => {
-    setBarcodes([...barcodes, newBarcode]);
+    // setBarcodes([...barcodes, newBarcode]);
     setFilteredBarcodes([...barcodes, newBarcode]);
   };
 
@@ -32,7 +32,8 @@ const Barcodes: React.FC = () => {
 
   const handleDeleteBarcode = (index: number, barcode: string) => {
     const updatedBarcodes = barcodes.filter((_, i) => i !== index);
-    setBarcodes(updatedBarcodes);
+    // setBarcodes(updatedBarcodes);
+    setFilteredBarcodes(updatedBarcodes);
     toast.success("Barcode deleted successfully");
   };
 
@@ -45,7 +46,8 @@ const Barcodes: React.FC = () => {
     const reorderedBarcodes = [...barcodes];
     const [draggedItem] = reorderedBarcodes.splice(draggingIndex, 1);
     reorderedBarcodes.splice(index, 0, draggedItem);
-    setBarcodes(reorderedBarcodes);
+    // setBarcodes(reorderedBarcodes);
+    setFilteredBarcodes(reorderedBarcodes);
     setDraggingIndex(null);
   };
 
