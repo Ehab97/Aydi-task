@@ -13,7 +13,7 @@ const Barcodes: React.FC = () => {
     setBarcodes([...barcodes, newBarcode]);
     setFilteredBarcodes([...barcodes, newBarcode]);
   };
-  
+
   const handleEditBarcode = (index: number, newBarcode: string) => {
     const updatedBarcodes = [...barcodes];
     updatedBarcodes[index] = newBarcode;

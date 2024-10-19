@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import JsBarcode from "jsbarcode";
-import {
-  PencilSquareIcon,
-  TrashIcon,
-  ArrowsPointingOutIcon,
-} from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon, ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
 
 interface IBarcodeItem {
   barcodeValue: string;
@@ -57,35 +53,46 @@ const BarcodeItem: React.FC<IBarcodeItem> = ({ barcodeValue, index, onConfirmCha
 
   return (
     <div
-      className="flex justify-between items-center space-x-4 w-100 p-4 cursor-move hover:bg-gray-200 border-slate-950 border-t"
+      className="flex flex-wrap sm:flex-nowrap justify-between items-center space-x-4 w-full p-4 cursor-move hover:bg-gray-200 border-slate-950 border-t"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex gap-2 items-center">
+        {/* Change to arrows when hovered */}
         {isHovered ? <ArrowsPointingOutIcon className="h-4 w-4" /> : <span>{index}</span>}
         <div>
-          <canvas ref={barcodeRef} className="w-44 h-12" />
+          <canvas ref={barcodeRef} className="w-32 sm:w-44 h-8 sm:h-12" />
         </div>
       </div>
 
-      <div className="flex items-center space-x-6">
-        {!isEditing && <span className="text-xl text-gray-950">{number}</span>}
+      <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap sm:flex-nowrap">
+        {/* Show input during editing, otherwise show the barcode number */}
+        {isEditing ? (
+          <input
+            type="text"
+            value={number}
+            onChange={handleInputChange}
+            placeholder="Enter number"
+            className="border p-2 rounded-full text-gray-950 px-4 py-2 w-full sm:w-auto"
+          />
+        ) : (
+          <span className="text-sm sm:text-xl text-gray-950">{number}</span>
+        )}
 
         <div className="space-x-2">
           {isEditing ? (
-            <div className="flex items-center space-x-1">
-              <input
-                type="text"
-                value={number}
-                onChange={handleInputChange}
-                placeholder="Enter number"
-                className="border p-2 rounded-full text-gray-950 px-4 py-2"
-              />
-              <button onClick={handleSaveEdit} className="bg-indigo-700 text-white px-4 py-2 rounded-full">
+            <div className="flex flex-wrap items-center space-x-2">
+              <button
+                onClick={handleSaveEdit}
+                className="bg-indigo-700 text-white px-4 py-2 rounded-full w-full sm:w-auto mt-2 sm:mt-0"
+              >
                 Save
               </button>
-              <button onClick={handleDiscardEdit} className="bg-gray-500 text-white px-4 py-2 rounded-full">
-                cancel
+              <button
+                onClick={handleDiscardEdit}
+                className="bg-gray-500 text-white px-4 py-2 rounded-full w-full sm:w-auto mt-2 sm:mt-0"
+              >
+                Cancel
               </button>
             </div>
           ) : (

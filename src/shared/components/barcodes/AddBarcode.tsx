@@ -22,20 +22,20 @@ const AddBarcode: React.FC<IAddBarcodeProps> = ({ onAddBarcode }) => {
   };
 
   return (
-    <div className="flex  gap-2 items-center mb-4 w-full flex-wrap">
+    <div className="flex flex-wrap sm:flex-nowrap gap-2 items-center mb-4 w-full px-2">
       <input
         type="text"
         value={newBarcode}
         onChange={handleInputChange}
         placeholder="Enter new barcode"
-        className="border py-2 px-4 rounded-full flex-1"
+        className="border py-2 px-4 rounded-full flex-1 w-full sm:w-auto"
       />
       <button
         onClick={handleAddBarcode}
-        className="flex-3 text-white py-2 px-4 rounded-full flex space-x-1 bg-indigo-700"
+        className="flex items-center justify-center text-white py-2 px-4 rounded-full w-full sm:w-auto bg-indigo-700 mt-2 sm:mt-0"
       >
         <PlusIcon className="h-6 w-6" />
-        Add Barcode
+        <span className="ml-1">Add Barcode</span>
       </button>
     </div>
   );
