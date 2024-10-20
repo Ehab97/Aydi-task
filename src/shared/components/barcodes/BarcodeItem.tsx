@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import JsBarcode from "jsbarcode";
 import { PencilSquareIcon, TrashIcon, ArrowsPointingOutIcon } from "@heroicons/react/24/outline";
+import Button from "../ui/Button";
 
 interface IBarcodeItem {
   barcodeValue: string;
@@ -58,7 +59,6 @@ const BarcodeItem: React.FC<IBarcodeItem> = ({ barcodeValue, index, onConfirmCha
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex gap-2 items-center">
-        {/* Change to arrows when hovered */}
         {isHovered ? <ArrowsPointingOutIcon className="h-4 w-4" /> : <span>{index}</span>}
         <div>
           <canvas ref={barcodeRef} className="w-32 sm:w-44 h-8 sm:h-12" />
@@ -66,7 +66,6 @@ const BarcodeItem: React.FC<IBarcodeItem> = ({ barcodeValue, index, onConfirmCha
       </div>
 
       <div className="flex items-center space-x-4 sm:space-x-6 flex-wrap sm:flex-nowrap">
-        {/* Show input during editing, otherwise show the barcode number */}
         {isEditing ? (
           <input
             type="text"
@@ -82,18 +81,8 @@ const BarcodeItem: React.FC<IBarcodeItem> = ({ barcodeValue, index, onConfirmCha
         <div className="space-x-2">
           {isEditing ? (
             <div className="flex flex-wrap items-center space-x-2">
-              <button
-                onClick={handleSaveEdit}
-                className="bg-indigo-700 text-white px-4 py-2 rounded-full w-full sm:w-auto mt-2 sm:mt-0"
-              >
-                Save
-              </button>
-              <button
-                onClick={handleDiscardEdit}
-                className="bg-gray-500 text-white px-4 py-2 rounded-full w-full sm:w-auto mt-2 sm:mt-0"
-              >
-                Cancel
-              </button>
+              <Button onClick={handleSaveEdit} title="Save" className="bg-indigo-700" />
+              <Button onClick={handleDiscardEdit} title="Cancel" className="bg-gray-500" />
             </div>
           ) : (
             <div className="flex items-center space-x-1">

@@ -1,5 +1,6 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import Button from "../ui/Button";
 
 interface IAddBarcodeProps {
   onAddBarcode: (barcodeValue: string) => void;
@@ -30,13 +31,12 @@ const AddBarcode: React.FC<IAddBarcodeProps> = ({ onAddBarcode }) => {
         placeholder="Enter new barcode"
         className="border py-2 px-4 rounded-full flex-1 w-full sm:w-auto"
       />
-      <button
+      <Button
         onClick={handleAddBarcode}
-        className="flex items-center justify-center text-white py-2 px-4 rounded-full w-full sm:w-auto bg-indigo-700 mt-2 sm:mt-0"
-      >
-        <PlusIcon className="h-6 w-6" />
-        <span className="ml-1">Add Barcode</span>
-      </button>
+        Icon={<PlusIcon className="h-6 w-6" />}
+        title="Add Barcode"
+        className="bg-indigo-700"
+      />
     </div>
   );
 };
